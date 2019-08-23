@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(
-    MaterialApp(
+class ContadorDePessoas extends StatefulWidget {
+  @override
+  _ContadorDePessoasState createState() => _ContadorDePessoasState();
+}
+
+class _ContadorDePessoasState extends State<ContadorDePessoas> {
+  int _count = 0;
+
+  void _metodo(int operator) {
+    setState(() {
+      _count += operator;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
       title: "Contsdor de Pessoas",
       home: Stack(
         fit: StackFit.expand,
@@ -15,16 +29,48 @@ void main() {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                "Pessoas: 0",
+                "Pessoas: $_count",
                 style: TextStyle(
                   fontSize: 32.0,
                   color: Colors.white,
                 ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  FlatButton(
+                  onPressed: () => _metodo(1),
+                    child: Text(
+                      "+1",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24.0,
+                      ),
+                    ),
+                  ),
+                  FlatButton(
+                    onPressed: () => _metodo(-1),
+                    child: Text(
+                      "-1",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24.0,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ],
       ),
-    ),
+    );
+  }
+}
+
+
+void main() {
+  runApp(
+    ContadorDePessoas()
   );
 }
