@@ -7,10 +7,22 @@ class ContadorDePessoas extends StatefulWidget {
 
 class _ContadorDePessoasState extends State<ContadorDePessoas> {
   int _count = 0;
+  String _mensagem = "Pode entrar!";
 
   void _metodo(int operator) {
+
     setState(() {
       _count += operator;
+      if (_count >= 10){
+        _mensagem = "Não pode entrar, está cheio.";
+        _count = 10;
+      }
+      else if (_count < 0){
+        _count = 0;
+      }
+      else {
+       _mensagem = "Pode entrar!";
+      }
     });
   }
 
@@ -39,7 +51,7 @@ class _ContadorDePessoasState extends State<ContadorDePessoas> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   FlatButton(
-                  onPressed: () => _metodo(1),
+                    onPressed: () => _metodo(1),
                     child: Text(
                       "+1",
                       style: TextStyle(
@@ -60,6 +72,13 @@ class _ContadorDePessoasState extends State<ContadorDePessoas> {
                   ),
                 ],
               ),
+              Text(
+                _mensagem,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24.0,
+                ),
+              )
             ],
           ),
         ],
@@ -68,9 +87,6 @@ class _ContadorDePessoasState extends State<ContadorDePessoas> {
   }
 }
 
-
 void main() {
-  runApp(
-    ContadorDePessoas()
-  );
+  runApp(ContadorDePessoas());
 }
