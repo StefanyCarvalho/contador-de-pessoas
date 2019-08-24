@@ -10,18 +10,15 @@ class _ContadorDePessoasState extends State<ContadorDePessoas> {
   String _mensagem = "Pode entrar!";
 
   void _metodo(int operator) {
-
     setState(() {
       _count += operator;
-      if (_count >= 10){
+      if (_count >= 10) {
         _mensagem = "Não pode entrar, está cheio.";
         _count = 10;
-      }
-      else if (_count < 0){
+      } else if (_count < 0) {
         _count = 0;
-      }
-      else {
-       _mensagem = "Pode entrar!";
+      } else {
+        _mensagem = "Pode entrar!";
       }
     });
   }
@@ -30,14 +27,14 @@ class _ContadorDePessoasState extends State<ContadorDePessoas> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Contsdor de Pessoas",
-      home: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          Image.asset(
-            "images/bg.jpg",
-            fit: BoxFit.cover,
-          ),
-          Column(
+      home: Material(
+        color: Colors.transparent,
+        child: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage("images/ceu.jpg"),
+          )),
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
@@ -50,25 +47,35 @@ class _ContadorDePessoasState extends State<ContadorDePessoas> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  FlatButton(
-                    onPressed: () => _metodo(1),
-                    child: Text(
-                      "+1",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24.0,
+                  Padding(
+                    //Espacamento de um Widget para o outro
+                    padding: EdgeInsets.all(12.0),
+                    child: FloatingActionButton(
+                      backgroundColor: Colors.transparent,
+                      elevation: 0.0,
+                      onPressed: () => _metodo(1),
+                      child: Text(
+                        "+1",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24.0,
+                        ),
                       ),
                     ),
                   ),
-                  FlatButton(
-                    onPressed: () => _metodo(-1),
-                    child: Text(
-                      "-1",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24.0,
-                      ),
-                    ),
+                  Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: FloatingActionButton(
+                      backgroundColor: Colors.transparent,
+                        elevation: 0.0,
+                        onPressed: () => _metodo(-1),
+                        child: Text(
+                          "-1",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 24.0,
+                          ),
+                        )),
                   ),
                 ],
               ),
@@ -81,7 +88,7 @@ class _ContadorDePessoasState extends State<ContadorDePessoas> {
               )
             ],
           ),
-        ],
+        ),
       ),
     );
   }
